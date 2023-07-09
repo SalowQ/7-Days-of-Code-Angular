@@ -1,4 +1,21 @@
-# 7DaysOfCodeAngular
+# 7 Days of Code | Angular
+
+Durante o evento dos 7 Days de Angular, estou trabalhando em um projeto emocionante de consumo da API do Star Wars. Estou criando uma aplicação para pesquisar personagens e veículos do universo de Star Wars, aplicando conceitos fundamentais do Angular. Fique ligado para conferir o resultado final em breve!
+
+
+## Links
+
+ - [SWAPI(Star Wars API)](https://swapi.dev/)
+ - [7 Days of Code](https://7daysofcode.io/matricula/angular-api)
+
+
+
+## Stack utilizada
+
+**Front-end:** Angular, Sass
+
+
+## Project
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0.
 
