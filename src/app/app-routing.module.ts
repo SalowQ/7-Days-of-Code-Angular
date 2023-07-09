@@ -16,7 +16,7 @@ const routes: Routes = [
     title: '7 Days Of Code | Movies',
   },
   {
-    path: 'ship',
+    path: 'ships',
     component: ShipComponent,
     title: '7 Days Of Code | Ship',
   },
