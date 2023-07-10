@@ -8,10 +8,11 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class ApiService {
+  private readonly API = 'https://swapi.dev/api/';
   constructor(private http: HttpClient) {}
 
-  fetch(): Observable<Array<Movie>> {
-    return this.http.get<any>('../assets/films.json').pipe(
+  fetchMovies(): Observable<Array<Movie>> {
+    return this.http.get<any>(`${this.API}films`).pipe(
       map((response) => {
         const movies: Array<Movie> = response.results;
         return movies;

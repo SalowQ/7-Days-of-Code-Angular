@@ -48,10 +48,9 @@ export class MoviesComponent implements OnInit {
   constructor(private service: ApiService) {}
 
   ngOnInit() {
-    this.service.fetch().subscribe((movies) => {
+    this.service.fetchMovies().subscribe((movies) => {
       this.movies = movies;
       this.dataSource = movies;
-      console.log(this.dataSource);
     });
   }
 }

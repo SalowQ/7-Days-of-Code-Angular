@@ -1,8 +1,12 @@
+<section class="spinner" *ngIf="!movies">
+  <mat-spinner></mat-spinner>
+</section>
 <table
   mat-table
   [dataSource]="dataSource"
   multiTemplateDataRows
   class="mat-elevation-z8"
+  *ngIf="movies"
 >
   <ng-container
     matColumnDef="{{ column }}"
