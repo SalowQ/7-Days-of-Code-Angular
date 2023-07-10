@@ -1,4 +1,65 @@
-<div>título: {{ movie?.title }}</div>
-<div>director: {{ movie?.director }}</div>
-<div>episode: {{ movie?.episode_id }}</div>
-<div>producers: {{ movie?.producer }}</div>
+<table
+  mat-table
+  [dataSource]="dataSource"
+  multiTemplateDataRows
+  class="mat-elevation-z8"
+>
+  <ng-container
+    matColumnDef="{{ column }}"
+    *ngFor="let column of columnsToDisplay"
+  >
+    <th mat-header-cell *matHeaderCellDef class="titles-row">
+      {{ columnNames[column] ? columnNames[column] : column }}
+    </th>
+    <td mat-cell *matCellDef="let movie">{{ movie[column] }}</td>
+  </ng-container>
+  <ng-container matColumnDef="expand">
+    <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+    <td mat-cell *matCellDef="let movie">
+      <button
+        mat-icon-button
+        aria-label="expand row"
+        (click)="
+          expandedMovie = expandedMovie === movie ? null : movie;
+          $event.stopPropagation()
+        "
+      >
+        <mat-icon *ngIf="expandedMovie !== movie">keyboard_arrow_down</mat-icon>
+        <mat-icon *ngIf="expandedMovie === movie">keyboard_arrow_up</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+  <ng-container matColumnDef="expandedDetail">
+    <td
+      mat-cell
+      *matCellDef="let movie"
+      [attr.colspan]="columnsToDisplayWithExpand.length"
+    >
+      <div
+        class="movie-detail"
+        [@detailExpand]="movie == expandedMovie ? 'expanded' : 'collapsed'"
+      >
+        <div class="movie-description">
+          {{ movie.opening_crawl }}
+          <span class="movie-description-attribution"> -- Opening intro </span>
+        </div>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+  <tr
+    mat-row
+    *matRowDef="let movie; columns: columnsToDisplayWithExpand"
+    class="movie-row"
+    [class.expanded-row]="expandedMovie === movie"
+    (click)="expandedMovie = expandedMovie === movie ? null : movie"
+  ></tr>
+  <tr
+    mat-row
+    *matRowDef="let row; columns: ['expandedDetail']"
+    class="detail-row"
+  ></tr>
+</table>
